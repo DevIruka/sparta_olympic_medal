@@ -16,7 +16,12 @@ function App() {
     return (
         <>
             <HeaderTag />
-            <MainTag />
+            <MainTag
+                medalLists={medalLists}
+                setMedalList={setMedalList}
+                formData={formData}
+                setFormData={setFormData}
+            />
         </>
     );
 }
