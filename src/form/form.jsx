@@ -51,6 +51,11 @@ export const Form = ({ formData, setFormData, medalLists, setMedalList }) => {
         setMedalList((medalLists) => {
             return [...medalLists, formData];
         });
+
+        const getItem = JSON.parse(localStorage.getItem("medalLists"));
+        getItem.push(formData);
+        localStorage.setItem("medalLists", JSON.stringify(getItem));
+
         setFormData({
             country: "",
             goldMedal: "",
