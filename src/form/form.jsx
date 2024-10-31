@@ -34,7 +34,7 @@ export const Form = ({ formData, setFormData, medalLists, setMedalList }) => {
     const onSubmitForm = (e) => {
         e.preventDefault();
         if (Object.values(formData).includes("")) {
-            alert("작성을 완료해주세요");
+            alert("존재하지 않는 국가입니다.");
             return;
         }
 
