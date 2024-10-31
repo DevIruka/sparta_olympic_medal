@@ -32,6 +32,14 @@ const DeleteBtn = (index, medalLists, setMedalList) => {
             return i != index;
         })
     );
+
+    const newSetStorage = JSON.parse(localStorage.getItem("medalLists")).filter(
+        (l, i) => {
+            return i != index;
+        }
+    );
+
+    localStorage.setItem("medalLists", JSON.stringify(newSetStorage));
 };
 
 const ContentsTable = ({ medalLists, setMedalList }) => {

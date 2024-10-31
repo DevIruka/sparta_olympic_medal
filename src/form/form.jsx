@@ -34,7 +34,7 @@ export const Form = ({ formData, setFormData, medalLists, setMedalList }) => {
     const onSubmitForm = (e) => {
         e.preventDefault();
         if (Object.values(formData).includes("")) {
-            alert("작성을 완료해주세요");
+            alert("존재하지 않는 국가입니다.");
             return;
         }
 
@@ -51,6 +51,11 @@ export const Form = ({ formData, setFormData, medalLists, setMedalList }) => {
         setMedalList((medalLists) => {
             return [...medalLists, formData];
         });
+
+        const getItem = JSON.parse(localStorage.getItem("medalLists"));
+        getItem.push(formData);
+        localStorage.setItem("medalLists", JSON.stringify(getItem));
+
         setFormData({
             country: "",
             goldMedal: "",
@@ -77,7 +82,15 @@ export const Form = ({ formData, setFormData, medalLists, setMedalList }) => {
         });
 
         setMedalList(revisedList);
+        localStorage.setItem("medalLists", JSON.stringify(revisedList));
         alert("업데이트 성공!");
+
+        setFormData({
+            country: "",
+            goldMedal: "",
+            silverMedal: "",
+            copperMedal: "",
+        });
     };
 
     return (

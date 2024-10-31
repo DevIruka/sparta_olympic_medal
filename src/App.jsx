@@ -4,7 +4,10 @@ import { HeaderTag } from "./HeaderTag";
 import { MainTag } from "./MainTag";
 
 function App() {
-    const [medalLists, setMedalList] = useState([]);
+    const [medalLists, setMedalList] = useState(() => {
+        const savedMedalLists = localStorage.getItem("medalLists");
+        return savedMedalLists ? JSON.parse(savedMedalLists) : [];
+    });
 
     const [formData, setFormData] = useState({
         country: "",
