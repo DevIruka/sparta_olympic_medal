@@ -82,7 +82,15 @@ export const Form = ({ formData, setFormData, medalLists, setMedalList }) => {
         });
 
         setMedalList(revisedList);
+        localStorage.setItem("medalLists", JSON.stringify(revisedList));
         alert("업데이트 성공!");
+
+        setFormData({
+            country: "",
+            goldMedal: "",
+            silverMedal: "",
+            copperMedal: "",
+        });
     };
 
     return (
