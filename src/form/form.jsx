@@ -37,6 +37,17 @@ export const Form = ({ formData, setFormData, medalLists, setMedalList }) => {
             alert("작성을 완료해주세요");
             return;
         }
+
+        for (const data of medalLists) {
+            const { country } = data;
+            if (country === formData.country) {
+                alert(
+                    "메달 리스트에 이미 존재하는 국가입니다. 업데이트 기능을 사용해주세요."
+                );
+                return;
+            }
+        }
+
         setMedalList((medalLists) => {
             return [...medalLists, formData];
         });
