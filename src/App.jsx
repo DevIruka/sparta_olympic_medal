@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import { HeaderTag } from "./HeaderTag";
 import { MainTag } from "./MainTag";
 
