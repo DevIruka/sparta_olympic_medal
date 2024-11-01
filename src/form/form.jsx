@@ -48,13 +48,13 @@ export const Form = ({ formData, setFormData, medalLists, setMedalList }) => {
             }
         }
 
-        setMedalList((medalLists) => {
-            return [...medalLists, formData];
-        });
+        const notsortedList = [...medalLists, formData];
 
-        const getItem = JSON.parse(localStorage.getItem("medalLists"));
-        getItem.push(formData);
-        localStorage.setItem("medalLists", JSON.stringify(getItem));
+        notsortedList.sort((a, b) => b.goldMedal - a.goldMedal);
+
+        setMedalList(notsortedList);
+
+        localStorage.setItem("medalLists", JSON.stringify(updatedList));
 
         setFormData({
             country: "",
@@ -81,8 +81,11 @@ export const Form = ({ formData, setFormData, medalLists, setMedalList }) => {
             return list;
         });
 
-        setMedalList(revisedList);
-        localStorage.setItem("medalLists", JSON.stringify(revisedList));
+        const notsortedList = [...revisedList];
+        notsortedList.sort((a, b) => b.goldMedal - a.goldMedal);
+
+        setMedalList(notsortedList);
+        localStorage.setItem("medalLists", JSON.stringify(notsortedList));
         alert("업데이트 성공!");
 
         setFormData({
