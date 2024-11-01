@@ -34,12 +34,28 @@ export const Form = ({ formData, setFormData, medalLists, setMedalList }) => {
     const onSubmitForm = (e) => {
         e.preventDefault();
         if (Object.values(formData).includes("")) {
-            alert("작성을 완료해주세요");
+            alert("존재하지 않는 국가입니다.");
             return;
         }
+
+        for (const data of medalLists) {
+            const { country } = data;
+            if (country === formData.country) {
+                alert(
+                    "메달 리스트에 이미 존재하는 국가입니다. 업데이트 기능을 사용해주세요."
+                );
+                return;
+            }
+        }
+
         setMedalList((medalLists) => {
             return [...medalLists, formData];
         });
+
+        const getItem = JSON.parse(localStorage.getItem("medalLists"));
+        getItem.push(formData);
+        localStorage.setItem("medalLists", JSON.stringify(getItem));
+
         setFormData({
             country: "",
             goldMedal: "",
@@ -66,7 +82,15 @@ export const Form = ({ formData, setFormData, medalLists, setMedalList }) => {
         });
 
         setMedalList(revisedList);
+        localStorage.setItem("medalLists", JSON.stringify(revisedList));
         alert("업데이트 성공!");
+
+        setFormData({
+            country: "",
+            goldMedal: "",
+            silverMedal: "",
+            copperMedal: "",
+        });
     };
 
     return (
